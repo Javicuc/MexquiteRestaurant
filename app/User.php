@@ -2,7 +2,7 @@
 
 namespace App;
 
-use SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,13 +17,22 @@ class User extends Authenticatable
     const USUARIO_VERIFICADO = 'verificado';
     const USUARIO_NO_VERIFICADO = 'no verificado';
 
+    const USUARIO_REGULAR = '0';
+    const USUARIO_SUPER = '1';
+    const USUARIO_ADMINISTRADOR = '2';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'email', 
+        'password',
+        'photo',
+        'type',
+        'verified',
     ];
 
     /**
@@ -38,5 +47,20 @@ class User extends Authenticatable
     public static function generarVerificationToken()
     {
       return str_random(40);
+    }
+
+    public function esSuper()
+    {
+        return $this->type == User::USUARIO_SUPER;
+    }
+
+    public function esRegular()
+    {
+        return $this->type == User::USUARIO_REGULAR;
+    }
+
+    public function esAdministrador()
+    {
+        return $this->type == User::USUARIO_ADMINISTRADOR;
     }
 }

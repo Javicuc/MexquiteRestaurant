@@ -9,6 +9,15 @@ class Dish extends Model
 {
     use softDeletes;
 
-    public const PLATILLO_DISPONIBLE = 'platillo disponible';
-    public const PLATILLO_NO_DISPONIBLE = 'platillo no disponible';
+    const PLATILLO_DISPONIBLE = 'platillo disponible';
+    const PLATILLO_NO_DISPONIBLE = 'platillo no disponible';
+
+    protected $fillable = [
+    	'name',
+    	'price',
+    	'description',
+    	'status',
+    	'gallery_id',
+    	'category_id',
+    ];
 }

@@ -20,12 +20,13 @@ class CreateDishesTable extends Migration
             $table->double('price')->unsigned();
             $table->string('description');
             $table->string('status')->default(Dish::PLATILLO_DISPONIBLE);
-            $table->string('image');
+            $table->integer('gallery_id')->unsigned();
             $table->integer('category_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('gallery_id')->references('id')->on('galleries');
         });
     }
 
