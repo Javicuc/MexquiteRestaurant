@@ -5,11 +5,9 @@ use App\Client;
 use App\Dish;
 use App\Gallery;
 use App\Image;
-use App\Occasion;
 use App\Payment;
 use App\Reservation;
 use App\Table;
-use App\Tag;
 use App\User;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
@@ -32,46 +30,55 @@ class DatabaseSeeder extends Seeder
         Dish::truncate();
         Gallery::truncate();
         Image::truncate();
-        Occasion::truncate();
         Payment::truncate();
         Table::truncate();
         Reservation::truncate();
-       	Tag::truncate();
        	User::truncate();
+        
        	DB::table('dish_reservation')->truncate();
        	DB::table('gallery_image')->truncate();
 
 
-        $cantidadCategorias = 30;
-        $cantidadClientes = 100;
-        $cantidadComidas = 120;
-        $cantidadGalerias = 150;
-        $cantidadImagenes = 600;
-        $cantidadOcasiones = 40;
-        $cantidadPagos = 200;
-        $cantidadReservaciones = 200;
-        $cantidadMesas = 30;
-        $cantiidadEtiquetas = 20;
-        $cantidadUsuarios = 5;
+        $cantidadCategorias = 30; // No importa el numero 
+        $cantidadClientes = 100; // No importa el numero
+        $cantidadComidas = 40; // No importa el numero
+        $cantidadGalerias = 50; // Deben ser menos que las imagenes
+        $cantidadImagenes = 600; // Deben ser mayores a las galerias
+        $cantidadPagos = 200; // debe ser igual a la cantidad de reservaciones
+        $cantidadReservaciones = 200; // debe ser igual a la cantidad de pagos
+        $cantidadMesas = 30; // Debe ser proporcional a las cantidades anteriores
+        $cantidadUsuarios = 5; // Usuarios del sistema del panel de administracion
 
         factory(User::class, $cantidadUsuarios)->create();
         factory(Category::class, $cantidadCategorias)->create();
         factory(Client::class, $cantidadClientes)->create();
         factory(Table::class, $cantidadMesas)->create();
         factory(Image::class, $cantidadImagenes)->create();
-        factory(Occasion::class, $cantidadOcasiones)->create();
         factory(Payment::class, $cantidadPagos)->create();
+        factory(Gallery::class, $cantidadGalerias)->create();
         factory(Dish::class, $cantidadComidas)->create();
         factory(Reservation::class, $cantidadReservaciones)->create();
-        factory(Gallery::class, $cantidadGalerias)->create();
-        factory(Tag::class, $cantiidadEtiquetas)->create();
-
-        $comidas = Dish::all();
-        Reservation::all()->each(function ($reservation) use ($comidas){
-            $reservation->dishes()->attach(
-                $categorias->random(rand(1,3))->pluck('id')
+        
+        $galerias = Gallery::all();
+        Image::all()->each(function($image) use ($galerias){
+            $image->galleries()->attach(
+                $galerias->random(rand(1,3))->pluck('id')
             );
         });
 
+        $reservaciones = Reservation::all();
+        foreach (range(1, 3) as $i) {
+            foreach ($reservaciones as $reservacion) {
+                $dish = Dish::all()->random();
+                $cantidad = $faker->numberBetween($min = 1, $max = 3);
+                DB::table('dish_reservation')->insert(array( 
+                    'dish_id' => $dish->id,
+                    'reservation_id' => $reservacion->id,
+                    'quantity' => $cantidad,
+                    'price' => $dish->price * $cantidad,
+                    )
+                );
+            }
+        }
     }
 }

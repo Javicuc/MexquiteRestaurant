@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Occasion;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class OccasionController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class OccasionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Occasion  $occasion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Occasion $occasion)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class OccasionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Occasion  $occasion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Occasion $occasion)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class OccasionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Occasion  $occasion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Occasion $occasion)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class OccasionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Occasion  $occasion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Occasion $occasion)
+    public function destroy($id)
     {
         //
     }

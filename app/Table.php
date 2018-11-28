@@ -14,9 +14,14 @@ class Table extends Model
     const MESA_RESERVADA = 'mesa reservada';
 
     protected $fillable = [
-      'number',
-      'price',
-      'status',
-      'size',
+        'number',
+        'price',
+        'status',
+        'size',
     ];
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

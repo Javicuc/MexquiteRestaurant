@@ -18,7 +18,7 @@ class CreateDishesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->double('price')->unsigned();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('status')->default(Dish::PLATILLO_DISPONIBLE);
             $table->integer('gallery_id')->unsigned();
             $table->integer('category_id')->unsigned();

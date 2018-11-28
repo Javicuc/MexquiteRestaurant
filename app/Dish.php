@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Category;
+use App\Gallery;
+use App\Reservation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -20,4 +23,19 @@ class Dish extends Model
     	'gallery_id',
     	'category_id',
     ];
+
+    public function gallery()
+    {
+        return $this->belongsTo(Gallery::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function reservations()
+    {
+        return $this->belongsToMany(Reservation::class);
+    }
 }

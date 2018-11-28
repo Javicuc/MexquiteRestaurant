@@ -14,4 +14,14 @@ class Category extends Model
       'description',
       'icon',
     ];
+
+    public function dishes()
+    {
+      return $this->hasMany(Dish::class);
+    }
+
+    public function galleries()
+    {
+      return $this->hasMany(Gallery::class);
+    }
 }

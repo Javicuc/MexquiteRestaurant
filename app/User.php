@@ -14,9 +14,6 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $dates = ['deleted_at'];
 
-    const USUARIO_VERIFICADO = 'verificado';
-    const USUARIO_NO_VERIFICADO = 'no verificado';
-
     const USUARIO_REGULAR = '0';
     const USUARIO_SUPER = '1';
     const USUARIO_ADMINISTRADOR = '2';
@@ -32,7 +29,6 @@ class User extends Authenticatable
         'password',
         'photo',
         'type',
-        'verified',
     ];
 
     /**
@@ -43,11 +39,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public static function generarVerificationToken()
-    {
-      return str_random(40);
-    }
 
     public function esSuper()
     {

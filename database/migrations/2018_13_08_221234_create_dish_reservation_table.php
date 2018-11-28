@@ -16,7 +16,8 @@ class CreateDishReservationTable extends Migration
         Schema::create('dish_reservation', function (Blueprint $table) {
             $table->integer('dish_id')->unsigned();
             $table->integer('reservation_id')->unsigned();
-
+            $table->integer('quantity');
+            $table->decimal('price',10,2);
             $table->foreign('dish_id')->references('id')->on('dishes');
             $table->foreign('reservation_id')->references('id')->on('reservations');
             
