@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
 use App\Client;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
@@ -14,7 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Client::paginate(15);
+        return view('Cliente.indexClientes', compact('clientes'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('Cliente.formCliente');
     }
 
     /**
@@ -35,7 +37,19 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+          'name' => 'required',
+          'email' => 'required|email',
+        );
+        
+        //dd($request);
+
+        $this->validate($request, $rules);
+        $data = $request->all();
+        
+        $cliente = Client::create($data);
+
+        return redirect()->route('clients.show', $cliente);
     }
 
     /**
@@ -46,7 +60,9 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        $cliente = Client::findorfail($client->id);
+        $reservaciones = $cliente->reservations()->paginate(10);
+        return view('Cliente.showCliente', compact('cliente','reservaciones'));
     }
 
     /**
@@ -57,7 +73,8 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $cliente = Client::findorfail($client->id);
+        return view('Cliente.formCliente', compact('cliente'));
     }
 
     /**
@@ -69,7 +86,17 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $rules = array(
+          'name' => 'min:3',
+          'email' => 'email',
+        );
+        
+        $this->validate($request, $rules);
+
+        Client::where('id', $client->id)->update($request->except('_token', '_method'));
+        $cliente = Client::find($client->id);
+
+        return redirect()->route('clients.show', $cliente);
     }
 
     /**
@@ -80,6 +107,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('clients.index');
     }
 }

@@ -1,8 +1,8 @@
 @extends('layouts.tema') 
 
-@section('titulo_contenido') Registrar Alumno @endsection
-@section('subtitulo_contenido') Registrar Alumno en BD @endsection
-@section('ruta_ref') <a href="{{ url('/alumnos') }}">Alumnos</a> @endsection
+@section('titulo_contenido') Registrar Cliente @endsection
+@section('subtitulo_contenido') Registrar Cliente en Sistema @endsection
+@section('ruta_ref') <a href="{{ url('/clients') }}">Clientes</a> @endsection
 
 @section('contenido')
 <div class="row">
@@ -20,30 +20,35 @@
       @endif
       
       
-      <h3 class="tile-title">Rellene los Campos para Alumno</h3>
+      <h3 class="tile-title">Rellene los Campos para Cliente</h3>
       <div class="tile-body">
 
-        @if(isset($alumno))
-          {!! Form::model($alumno, ['route' => ['alumnos.update', $alumno->id], 'method' => 'PATCH']) !!}
+        @if(isset($cliente))
+          {!! Form::model($cliente, ['route' => ['clients.update', $cliente->id], 'method' => 'PATCH']) !!}
         @else
-          {!! Form::open(['route' => 'alumnos.store']) !!}
+          {!! Form::open(['route' => ['clients.store']]) !!}
         @endif 
           {{-- csrf_field() --}}
+          
           <div class="form-group">
-            <label for="nombre" class="control-label">Nombre</label>
-            {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del alumno']); !!}
+            <label for="name" class="control-label">Nombre</label>
+            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del cliente']); !!}
           </div>
+          
           <div class="form-group">            
-            <label for="codigo" class="control-label">Código</label>
-              {!! Form::text('codigo', null, ['class' => 'form-control', 'placeholder' => 'Ingresa código del alumno']) !!}
+            <label for="email" class="control-label">Correo</label>
+              {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Ingresa un correo electrónico']) !!}
           </div>
-          <div class="form-group">
-            <label for="carrera" class="control-label">Carrera</label>
-              {!! Form::text('carrera', null, ['class' => 'form-control', 'placeholder' => 'Ingresa carrera del alumno']) !!}
+
+          <div class="form-group">            
+            <label for="phone" class="control-label">Telefono</label>
+              {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Ingresa un número de teléfono']) !!}
           </div>
+          
           <div class="tile-footer">
-            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Registrar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Registrar</button>
           </div>
+
         {!! Form::close() !!}
       </div>
     </div>

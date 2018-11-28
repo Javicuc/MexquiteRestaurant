@@ -96,7 +96,7 @@ class CategoryController extends Controller
         $category = Category::findorfail($category->id);
 
         $rules = array(
-          'nombre' => 'min:3',
+          'name' => 'min:3',
           'icon' => 'image|mimes:jpg,jpeg,bmp,png,gif,svg|max:1524',
         );
         
@@ -114,6 +114,11 @@ class CategoryController extends Controller
             $category->icon = $request->icon->store('','images');
         }
         
+        if($request->has('description'))
+        {
+            $category->description = $request->description;
+        }
+
         if(!$category->isDirty())
         {
             return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
