@@ -1,7 +1,7 @@
 @extends('layouts.tema')
 @section('titulo_contenido') Instancia de Cliente @endsection
 @section('subtitulo_contenido') Información Obtenida del Cliente Registrado en el Sistema @endsection
-@section('ruta_ref') <a href="{{ url('/clients') }}">Clientes</a> @endsection
+@section('ruta_ref') <a href="{{ url('/admin/clients') }}">Clientes</a> @endsection
 
 @section('contenido')
 <div class="row">
@@ -43,7 +43,7 @@
   <div class="col-md-12">
     <div class="tile">
       <h3 class="tile-title">Reservaciones del Cliente</h3>
-      <a class="btn btn-primary" href="{{ route('clients.reservations.create') }}"><i class="fa fa-lg fa-plus"></i></a>
+      <a class="btn btn-primary" href="{{ route('clients.reservations.create', $cliente) }}"><i class="fa fa-lg fa-plus"></i></a>
       <div class="table table-bordered table-responsive">
         <table class="table table-hover">
           <thead>

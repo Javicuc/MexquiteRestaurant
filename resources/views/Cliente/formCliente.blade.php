@@ -2,7 +2,7 @@
 
 @section('titulo_contenido') Registrar Cliente @endsection
 @section('subtitulo_contenido') Registrar Cliente en Sistema @endsection
-@section('ruta_ref') <a href="{{ url('/clients') }}">Clientes</a> @endsection
+@section('ruta_ref') <a href="{{ url('/admin/clients') }}">Clientes</a> @endsection
 
 @section('contenido')
 <div class="row">

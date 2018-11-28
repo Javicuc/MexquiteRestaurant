@@ -1,7 +1,7 @@
 @extends('layouts.tema') 
 @section('titulo_contenido') Listado de Clientes @endsection
 @section('subtitulo_contenido') Clientes Registrados en Sistema @endsection
-@section('ruta_ref') <a href="{{ url('/clients') }}">Clientes</a> @endsection
+@section('ruta_ref') <a href="{{ url('/admin/clients') }}">Clientes</a> @endsection
 
 @section('contenido')
 <a href="{{ route('clients.create')}}" class="btn btn-success btn-block mb-2">Nuevo Cliente</a>

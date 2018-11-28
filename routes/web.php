@@ -23,8 +23,10 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::resource('categories', 'Category\CategoryController');
 	Route::resource('categories.dishes', 'Category\CategoryDishController');
 	Route::resource('categories.galleries', 'Category\CategoryGalleryController');
+	
 	Route::resource('clients', 'Client\ClientController');
 	Route::resource('clients.reservations', 'Client\ClientReservationController');
+	
 	Route::resource('dishes', 'Dish\DishController');
 	Route::resource('galleries', 'Gallery\GalleryController');
 	Route::resource('images', 'Image\ImageController');

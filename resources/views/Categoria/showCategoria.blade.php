@@ -1,7 +1,7 @@
 @extends('layouts.tema')
 @section('titulo_contenido') Instancia de Categoria @endsection
 @section('subtitulo_contenido') Información Obtenida de la Categoria Registrada en el Sistema @endsection
-@section('ruta_ref') <a href="{{ url('/categories') }}">Categorias</a> @endsection
+@section('ruta_ref') <a href="{{ url('/admin/categories') }}">Categorias</a> @endsection
 
 @section('contenido')
 <div class="row">

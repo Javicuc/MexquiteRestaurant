@@ -1,7 +1,7 @@
 @extends('layouts.tema') 
 @section('titulo_contenido') Listado de Categorias @endsection
 @section('subtitulo_contenido') Categorias Registrados en Sistema @endsection
-@section('ruta_ref') <a href="{{ url('/categorias') }}">Categorias</a> @endsection
+@section('ruta_ref') <a href="{{ url('/admin/categorias') }}">Categorias</a> @endsection
 
 @section('contenido')
 <a href="{{ route('categories.create')}}" class="btn btn-success btn-block mb-2">Nueva Categoria</a>

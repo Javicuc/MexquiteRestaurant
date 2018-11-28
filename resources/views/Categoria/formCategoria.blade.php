@@ -2,7 +2,7 @@
 
 @section('titulo_contenido') Registrar Categoria @endsection
 @section('subtitulo_contenido') Registrar Categoria en Sistema @endsection
-@section('ruta_ref') <a href="{{ url('/categorias') }}">Categorias</a> @endsection
+@section('ruta_ref') <a href="{{ url('/admin/categorias') }}">Categorias</a> @endsection
 
 @section('contenido')
 <div class="row">

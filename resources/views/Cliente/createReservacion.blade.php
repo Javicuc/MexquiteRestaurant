@@ -2,7 +2,7 @@
 
 @section('titulo_contenido') Registrar Reservación en Cliente @endsection
 @section('subtitulo_contenido') Registrar Reservación en Sistema para un Cliente Seleccionado @endsection
-@section('ruta_ref') <a href="{{ url('/clients') }}">Clientes</a> @endsection
+@section('ruta_ref') <a href="{{ url('/admin/clients') }}">Clientes</a> @endsection
 
 @section('contenido')
 <div class="row">
@@ -23,26 +23,32 @@
       <h3 class="tile-title">Rellene los Campos para Reservación</h3>
       <div class="tile-body">
 
-        @if(isset($cliente))
-          {!! Form::model($cliente, ['route' => ['clients.reservations.update', $cliente->id], 'method' => 'PATCH']) !!}
-        @else
-          {!! Form::open(['route' => ['clients.reservations.store']]) !!}
-        @endif 
+        {!! Form::open(['route' => ['clients.reservations.store',  $cliente]]) !!} 
           {{-- csrf_field() --}}
           
           <div class="form-group">
-            <label for="name" class="control-label">Nombre</label>
-            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Escriba el nombre del cliente']); !!}
+            <label for="date" class="control-label">Fecha</label>
+            {!! Form::text('date', null, ['class' => 'form-control', 'placeholder' => 'Ingresa fecha de reservación']); !!}
           </div>
           
           <div class="form-group">            
-            <label for="email" class="control-label">Correo</label>
-              {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Ingresa un correo electrónico']) !!}
+            <label for="hour" class="control-label">Hora</label>
+              {!! Form::text('hour', null, ['class' => 'form-control', 'placeholder' => 'Ingresa hora de reservación']) !!}
           </div>
 
           <div class="form-group">            
-            <label for="phone" class="control-label">Telefono</label>
-              {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Ingresa un número de teléfono']) !!}
+            <label for="clients_quantity" class="control-label">Personas</label>
+              {!! Form::text('clients_quantity', null, ['class' => 'form-control', 'placeholder' => 'Ingresa cantidad de personas que asistiran']) !!}
+          </div>
+
+          <div class="form-group">            
+            <label for="table_id" class="control-label">Mesa</label>
+              {!! Form::text('table_id', null, ['class' => 'form-control', 'placeholder' => 'Selecciona la mesa a reservar']) !!}
+          </div>
+
+          <div class="form-group">            
+            <label for="payment_id" class="control-label">Método de Pago</label>
+              {!! Form::text('payment_id', null, ['class' => 'form-control', 'placeholder' => 'Selecciona el método de pago']) !!}
           </div>
           
           <div class="tile-footer">
