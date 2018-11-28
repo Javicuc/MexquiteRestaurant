@@ -23,6 +23,7 @@ class CreateTablesTable extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+            
         });
     }
 

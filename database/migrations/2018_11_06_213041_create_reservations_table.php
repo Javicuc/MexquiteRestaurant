@@ -18,9 +18,10 @@ class CreateReservationsTable extends Migration
             $table->date('date');
             $table->time('hour');
             $table->integer('clients_quantity')->unsigned();
+            $table->string('occasion')->nullable();
+            
             $table->integer('client_id')->unsigned();
             $table->integer('table_id')->unsigned();
-            $table->integer('occasion_id')->unsigned();
             $table->integer('payment_id')->unsigned();
 
             $table->timestamps();
@@ -28,7 +29,6 @@ class CreateReservationsTable extends Migration
 
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('table_id')->references('id')->on('tables');
-            $table->foreign('occasion_id')->references('id')->on('occasions');
             $table->foreign('payment_id')->references('id')->on('payments');
 
         });
