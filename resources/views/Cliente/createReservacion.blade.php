@@ -25,7 +25,7 @@
         
         <div class="form-group">
           <label for="date" class="control-label">Fecha</label>
-          {!! Form::text('date', null, ['class' => 'form-control', 'placeholder' => 'Ingresa fecha de reservación']); !!}
+          {!! Form::text('date', null, ['class' => 'date form-control', 'placeholder' => 'Ingresa fecha de reservación']); !!}
         </div>
         
         <div class="form-group">
@@ -43,14 +43,6 @@
         <div class="form-group">
           <label for="payment_id" class="control-label">Método de Pago</label>
           {!! Form::text('payment_id', null, ['class' => 'form-control', 'placeholder' => 'Selecciona el método de pago']) !!}
-        </div>
-
-        <div class="container">
-
-          <h1>Laravel Bootstrap Datepicker</h1>
-
-          <input class="date form-control" type="text">
-
         </div>
 
         <div class="tile-footer">

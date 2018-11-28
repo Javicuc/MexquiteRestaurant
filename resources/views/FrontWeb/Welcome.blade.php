@@ -1,3 +1,5 @@
+@extends('FrontWeb.TemaFront')
+@section('contenido')
 	<!-- Slide1 -->
 	@include('FrontWeb.SlideHome')
 
@@ -36,3 +38,5 @@
 	</section>
 
 	@include('FrontWeb.FormReservationHome')
+	
+@endsection
