@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Dish;
+namespace App\Http\Controllers\Reservation;
 
-use App\Dish;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DishController extends Controller
+class ReservationDishController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,22 +41,21 @@ class DishController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Dish  $dish
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dish)
+    public function show($id)
     {
-        $platillo = Dish::findorfail($dish->id);
-        return view('Platillo.showPlatillo', compact('platillo'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Dish  $dish
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dish $dish)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +64,10 @@ class DishController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dish  $dish
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,11 +75,12 @@ class DishController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Dish  $dish
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dish $dish)
+    public function destroy(Reservation $reservation, Dish $dish)
     {
-        //
+        $reservation->dishes()->detach([$dish->id]);
+        return redirect()->route('reservations.show', $reservation->id);
     }
 }

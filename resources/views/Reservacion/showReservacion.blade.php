@@ -11,7 +11,6 @@
         <h3 class="title">{{$reservacion->id}}</h3>
         <div class="btn-group">
           <a class="btn btn-primary" href="{{ route('clients.index') }}"><i class="fa fa-lg fa-plus"></i></a>
-          <a class="btn btn-primary" href="{{ route('clients.reservations.edit', $reservacion->client_id, $reservacion) }}"><i class="fa fa-lg fa-edit"></i></a>
         </div>
       </div>
       <div class="tile-body">
@@ -29,7 +28,7 @@
               <tr>
                 <td>{{ $reservacion->date }}</td>
                 <td>{{ $reservacion->hour }}</td>
-                <td>{{ $reservacion->quantity_clients }}</td>
+                <td>{{ $reservacion->clients_quantity }}</td>
                 <td>{{ $reservacion->payment }}</td>
                 <td>{{ $reservacion->client->name }}</td>
                 <td>{{ $reservacion->table->number }}</td>
@@ -60,26 +59,20 @@
           </thead>
           <tbody>
             @foreach($platillos as $platillo)
-            {!! Form::open(['route' => ['reservations.dishes.+
-            destroy', $cliente->id, $reservacion->id], 'method' => 'Delete']) !!}
+            {!! Form::open(['route' => ['reservations.dishes.destroy', $reservacion->id, $platillo->id], 'method' => 'Delete']) !!}
             <tr>
-              <td> <a class="btn btn-sm btn-info" href="{{ route('reservations.show', $reservacion->id) }}">{{ $reservacion->id }}</a> </td>
-              <td> {{ $reservacion->date }} </td>>
-              <td> {{ $reservacion->hour }} </td>
-              <td> {{ $reservacion->clients_quantity }} </td>
-              <td> {{ $reservacion->occasion }}</td>
-              <td> {{ $reservacion->table->number }}</td>
-              <td> {{ $reservacion->payment }}</td>
-              <td> {{ '$' }} </td>
-              <td> {{ $reservacion->details }}</td>
-              <td> {{ $reservacion->created_at }}</td>
+              <td> <a class="btn btn-sm btn-info" href="{{ route('dishes.show', $platillo->id) }}">{{ $platillo->id }}</a> </td>
+              <td> {{ $platillo->name }} </td>>
+              <td> {{ $platillo->price }} </td>
+              <td> {{ $platillo->description }} </td>
+              <td> {{ $platillo->category->name }}</td>
               <td> {!! Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger']) !!} </td>
             </tr>
             {!! Form::close() !!}
             @endforeach
           </tbody>
         </table>
-        {{ $reservaciones->links() }}
+        {{ $platillos->links() }}
       </div>
     </div>
   </div>
