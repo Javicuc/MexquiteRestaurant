@@ -30,19 +30,40 @@
         
         <div class="form-group">
           <label for="hour" class="control-label">Hora</label>
-          {!! Form::text('hour', null, ['class' => 'form-control', 'placeholder' => 'Ingresa hora de reservación']) !!}
+          {!! Form::text('hour', null, ['class' => 'timepicker form-control', 'placeholder' => 'Ingresa hora de reservación']) !!}
         </div>
-        <div class="form-group">
-          <label for="clients_quantity" class="control-label">Personas</label>
-          {!! Form::text('clients_quantity', null, ['class' => 'form-control', 'placeholder' => 'Ingresa cantidad de personas que asistiran']) !!}
-        </div>
+
         <div class="form-group">
           <label for="table_id" class="control-label">Mesa</label>
-          {!! Form::text('table_id', null, ['class' => 'form-control', 'placeholder' => 'Selecciona la mesa a reservar']) !!}
+          <select class="form-control" name="table_id">
+            @foreach($mesas as $mesa)
+              <option value="{{ $mesa->id }}">{{ 'Número de Mesa: ' . '[' . $mesa->number . '],' . ' Tamaño: ' . $mesa->size . ' Personas, Estatus: ' . $mesa->status}}</option>
+            @endforeach
+          </select>
         </div>
+        
         <div class="form-group">
-          <label for="payment_id" class="control-label">Método de Pago</label>
-          {!! Form::text('payment_id', null, ['class' => 'form-control', 'placeholder' => 'Selecciona el método de pago']) !!}
+          <label for="clients_quantity" class="control-label">Personas</label>
+          {!! Form::number('clients_quantity', '0', ['min' => '1', 'max' => '8', 'class' => 'form-control', 'placeholder' => 'Ingresa cantidad de personas que asistiran']) !!}
+        </div>
+
+        <div class="form-group">
+          <label for="payment" class="control-label">Método de Pago</label>
+          <select class="form-control" name="payment">
+            @foreach($metodos as $metodo)
+                <option value="{{ $metodo }}">{{ $metodo }}</option>
+            @endforeach
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label for="occasion" class="control-label">Motivo u ocasión especial</label>
+            {!! Form::text('occasion', null, ['class' => 'form-control', 'placeholder' => 'Escriba motivo especial ej: Cumpleaños']); !!}
+        </div>
+
+        <div class="form-group">
+          <label for="details" class="control-label">¿Agregar algún detalle?</label>
+          {!! Form::textarea('details', null, ['class' => 'form-control', 'rows' => 2, 'maxlength' => '275', 'style' => 'resize:none']) !!}
         </div>
 
         <div class="tile-footer">
@@ -55,13 +76,15 @@
 </div>
 
 <script type="text/javascript">
+  $('.date').datepicker({  
+    format: 'yyyy-mm-dd'
+  });
+</script>
 
-    $('.date').datepicker({  
-
-       format: 'mm-dd-yyyy'
-
-     });  
-
-</script>  
+<script type="text/javascript">
+  $('.timepicker').datetimepicker({
+      format: 'HH:mm'
+});
+</script>    
 
 @stop
