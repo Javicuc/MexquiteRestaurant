@@ -15,7 +15,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view('FrontWeb.FormReservation');
+        $reservaciones = Reservation::orderBy('id', 'desc')->paginate(15);
+        return view('Reservacion.indexReservaciones', compact('reservaciones'));
     }
 
     /**
@@ -61,7 +62,10 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //
+        $reservacion = Reservation::findorfail($reservation->id);
+        $metodos = [Reservation::PROMOCION, Reservation::PROMOCION_EFECTIVO, 
+        Reservation::EFECTIVO, Reservation::CUPON, Reservation::TARJETA, Reservation::INVITACION];
+        return view('Reservacion.formReservacion', compact('reservacion','metodos'));
     }
 
     /**
@@ -73,7 +77,26 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $reservacion = Reservation::findorfail($reservation->id);
+        $reglas = [
+            'payment' => 'in:' . Reservation::PROMOCION . ',' . Reservation::PROMOCION_EFECTIVO . ',' . Reservation::EFECTIVO . ',' . Reservation::TARJETA . ',' . Reservation::CUPON . ',' . Reservation::INVITACION, 
+        ];
+
+        if($request->has('payment')){
+            $reservacion->payment = $request->payment;
+        }   
+
+        if($request->has('details')){
+            $reservacion->details = $request->details;
+        }
+
+        if($request->has('occasion')){
+            $reservacion->occasion = $request->occasion;
+        }
+
+        $reservacion->save();
+
+        return redirect()->route('reservations.show', $reservacion);
     }
 
     /**
@@ -84,6 +107,9 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservacion = Reservation::findorfail($reservation->id);
+        $reservacion->dishes()->detach();
+        $reservacion->delete();
+        return redirect()->route('reservations.index');
     }
 }

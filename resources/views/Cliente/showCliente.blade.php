@@ -43,7 +43,7 @@
   <div class="col-md-12">
     <div class="tile">
       <h3 class="tile-title">Reservaciones del Cliente</h3>
-      <a class="btn btn-primary" href="{{ route('clients.reservations.create', $cliente) }}"><i class="fa fa-lg fa-plus"></i></a>
+      <a class="btn btn-primary btn-block mb-2" href="{{ route('clients.reservations.create', $cliente) }}">Agregar Nueva Reservación</a>
       <div class="table table-bordered table-responsive">
         <table class="table table-hover">
           <thead>

@@ -108,9 +108,9 @@ class ClientReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client, Reservation $reservation)
+    public function edit(Reservation $reservation)
     {
-        $cliente = Client::findorfail($client->id);
+        $cliente = Client::findorfail($reservation->client_id);
         $reservacion = Reservation::findorfail($reservation->id);
         return view('Cliente.createReservacion', compact('cliente','reservacion'));
     }

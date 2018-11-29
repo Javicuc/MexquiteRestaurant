@@ -6,6 +6,7 @@ use App\Dish;
 use App\Http\Controllers\Controller;
 use App\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationDishController extends Controller
 {
@@ -38,6 +39,20 @@ class ReservationDishController extends Controller
     public function store(Request $request, Reservation $reservation)
     {
         $reservacion = Reservation::findorfail($reservation->id);
+
+        $dish = Dish::findorfail($request->dishes);
+        $cantidad = $request->quantity;
+
+        DB::transaction(function() use ($dish, $reservacion, $cantidad) {
+            DB::table('dish_reservation')->insert(array( 
+                    'dish_id' => $dish->id,
+                    'reservation_id' => $reservacion->id,
+                    'quantity' => $cantidad,
+                    'price' => $dish->price * $cantidad,
+                    )
+                );
+        }, 5);
+
         return redirect()->route('reservations.show', $reservacion);
     }
 

@@ -11,6 +11,10 @@
         <h3 class="title">{{$reservacion->id}}</h3>
         <div class="btn-group">
           <a class="btn btn-primary" href="{{ route('clients.index') }}"><i class="fa fa-lg fa-plus"></i></a>
+          <a class="btn btn-primary" href="{{ route('reservations.edit', $reservacion->id) }}"><i class="fa fa-lg fa-edit"></i></a>
+           {!! Form::open(['route' => ['reservations.destroy', $reservacion->id], 'method' => 'Delete']) !!}
+          {{ Form::button('<i class="fa fa-lg fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}
+          {!! Form::close() !!}
         </div>
       </div>
       <div class="tile-body">
@@ -42,7 +46,7 @@
 
   <div class="clearfix"></div>
   
-  <div class="col-md-6">
+  <div class="col-md-9">
     <div class="tile">
       <h3 class="tile-title">Platillos de la Reservación</h3>
       <div class="table table-bordered table-responsive">
@@ -77,7 +81,7 @@
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-3">
     <div class="tile">
       <div class="tile-title-w-btn">
         <h3 class="title">Agregar Platillos</h3>
@@ -93,7 +97,11 @@
             @endforeach
           </select>
           <br>
-          {!! Form::submit('Agregar Platillo', ['class' => 'btn btn-primary btn-succesful']) !!}
+          <div class="form-group">
+            <h4>Cantidad</h4>
+            {!! Form::number('quantity', '0', ['min' => '1', 'max' => '8', 'class' => 'form-control', 'placeholder' => 'Ingresa cantidad del platillo seleccionado']) !!}
+          </div>
+          {!! Form::submit('Agregar Platillo', ['class' => 'btn btn-block btn-primary btn-succesful']) !!}
           {!! Form::close() !!}
         </div>
       </div>
