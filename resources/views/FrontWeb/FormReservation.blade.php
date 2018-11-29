@@ -1,3 +1,6 @@
+@extends('FrontWeb.TemaFront')
+@section('contenido')
+
 	<section class="section-reservation bg1-pattern p-t-100 p-b-113">
 		<div class="container">
 			<div class="row">
@@ -145,3 +148,4 @@
 			</div>
 		</div>
 	</section>
+@endsection

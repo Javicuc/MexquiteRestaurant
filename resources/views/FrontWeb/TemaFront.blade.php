@@ -36,21 +36,7 @@
 	<!-- Header -->
 	@include('FrontWeb.Header')
 
-	<!-- Slide1 -->
-	@include('FrontWeb.SlideHome')
-
-	<!-- Welcome -->
-	@include('FrontWeb.Welcome')
-
-	<!-- Intro -->
-
-	<!-- Our menu -->
-
-	<!-- Event -->
-
-	<!-- Booking -->
-	@include('FrontWeb.FormReservationHome')
-	<!-- Review -->
+	@yield('contenido')
 
 	<!-- Sign up -->
 	<div class="section-signup bg1-pattern p-t-85 p-b-85">

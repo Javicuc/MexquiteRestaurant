@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\FrontWeb;
 
-use Illuminate\Http\Request;
+use App\Dish;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('FrontWeb.Welcome');
+        $platillos = Dish::all();
+        return view('FrontWeb.MainMenu', compact('platillos'));
     }
 
     /**
