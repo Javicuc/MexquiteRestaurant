@@ -4,7 +4,7 @@
 @section('ruta_ref') <a href="{{ url('/admin/tables') }}">Mesas</a> @endsection
 
 @section('contenido')
-<a href="{{ route('dishes.create')}}" class="btn btn-success btn-block mb-2">Nuevo Platillo</a>
+<a href="{{ route('tables.create')}}" class="btn btn-success btn-block mb-2">Agregar Nueva Mesa</a>
 @if($mesas->count() == 0)
 <div class="alert alert-info">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -32,8 +32,9 @@
           <td>{{ $mesa->price }}</td>
           <td>{{ $mesa->status }}</td>
           <td>{{ $mesa->size }}</td>
-          <td> {!! Form::submit('DESOCUPAR MESA', ['class' => 'btn btn-sm btn-success']) !!} </td>
+          <td> {!! Form::submit('Desocupar Mesa', ['class' => 'btn btn-sm btn-success']) !!} </td>
         </tr >
+        {!! Form::close() !!}
       @endforeach
     </tbody>
   </table> 

@@ -38,14 +38,15 @@ class TableController extends Controller
     {
         $reglas = [
             'number' => 'required|unique:tables',
-            'price' => 'required|decimal',
+            'price' => 'required|numeric|between:100,1000.00',
             'size' => 'required|min:1',
         ];
 
         $this->validate($request, $reglas);
 
         $data = $request->all();
-        
+        $data['status'] = Table::MESA_DISPONIBLE;
+
         $mesa = Table::create($data);
 
         return redirect()->route('tables.show', $mesa);
@@ -84,8 +85,28 @@ class TableController extends Controller
      */
     public function update(Request $request, Table $table)
     {
+        $reglas = [
+            'price' => 'numeric|between:100,1000.00',
+            'size' => 'min:1',
+        ];
+
+        $this->validate($request,$reglas);
+
         $mesa = Table::findorfail($table->id);
-        $mesa->status = Table::MESA_DISPONIBLE;
+
+        if($mesa->status != Table::MESA_DISPONIBLE){
+            $mesa->status = Table::MESA_DISPONIBLE;
+        }
+
+        if($request->has('price'))
+        {
+            $mesa->price = $request->price;
+        }
+        
+        if($request->has('size')){
+            $mesa->size = $request->size;
+        }
+        $mesa->save();
         return redirect()->route('tables.index');
     }
 

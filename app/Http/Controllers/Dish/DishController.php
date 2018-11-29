@@ -86,6 +86,7 @@ class DishController extends Controller
     {
         $platillo = Dish::findorfail($dish->id);
         $platillo->status = Dish::PLATILLO_NO_DISPONIBLE;
+        $platillo->save();
         return redirect()->route('dishes.index');
     }
 }

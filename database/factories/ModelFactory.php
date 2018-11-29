@@ -38,7 +38,7 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'photo' => 'profile-default.png',
-        'type' => $faker->randomElement([User::USUARIO_ADMINISTRADOR, User::USUARIO_REGULAR, User::USUARIO_SUPER]),
+        'type' => $faker->randomElement([User::USUARIO_ADMINISTRADOR, User::USUARIO_SUPER]),
         'remember_token' => str_random(10),
     ];
 });

@@ -47,7 +47,7 @@
         
         <div class="form-group">
           <label for="clients_quantity" class="control-label">Personas</label>
-          {!! Form::number('clients_quantity', '0', ['min' => '1', 'max' => '8', 'class' => 'form-control', 'placeholder' => 'Ingresa cantidad de personas que asistiran']) !!}
+          {!! Form::number('clients_quantity', '1', ['min' => '1', 'max' => '8', 'class' => 'form-control', 'placeholder' => 'Ingresa cantidad de personas que asistiran']) !!}
         </div>
 
         <div class="form-group">

@@ -15,6 +15,14 @@ class Category extends Model
       'icon',
     ];
 
+    public function setNameAttribute($valor){
+        $this->attributes['name'] = mb_strtolower($valor);
+    }
+
+    public function getNameAttribute($valor){
+        return ucwords($valor);
+    }
+    
     public function dishes()
     {
       return $this->hasMany(Dish::class);

@@ -15,6 +15,14 @@ class Client extends Model
       'email',
     ];
 
+    public function setNameAttribute($valor){
+        $this->attributes['name'] = mb_strtolower($valor);
+    }
+
+    public function getNameAttribute($valor){
+        return ucwords($valor);
+    }
+    
     public function reservations()
     {
     	return $this->hasMany(Reservation::class);

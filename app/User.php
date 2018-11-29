@@ -14,7 +14,6 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $dates = ['deleted_at'];
 
-    const USUARIO_REGULAR = '0';
     const USUARIO_SUPER = '1';
     const USUARIO_ADMINISTRADOR = '2';
 
@@ -40,14 +39,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function setNameAttribute($valor){
+        $this->attributes['name'] = mb_strtolower($valor);
+    }
+
+    public function getNameAttribute($valor){
+        return ucwords($valor);
+    }
+
     public function esSuper()
     {
         return $this->type == User::USUARIO_SUPER;
-    }
-
-    public function esRegular()
-    {
-        return $this->type == User::USUARIO_REGULAR;
     }
 
     public function esAdministrador()

@@ -14,7 +14,12 @@
 Route::get('/admin', function () {
     return view('bienvenida');
 })->name('panel')->middleware('auth');
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+// Authentication Routes...
+Route::get('login', ['as' => 'login', 'uses' =>'\App\Http\Controllers\Auth\LoginController@showLoginForm']);
+Route::post('login', ['as' => 'login', 'uses' =>'\App\Http\Controllers\Auth\LoginController@login']);
+Route::get('logout', ['as' => 'logout', 'uses' => '\App\Http\Controllers\Auth\LoginController@logout']);
 
 Route::get('/', 'FrontWeb\HomeController@index')->name('mexquiterestaurant');
 Route::get('/menu', 'FrontWeb\MenuController@index')->name('menu');
@@ -29,9 +34,6 @@ Route::get('/contact', function(){
   
   return view('FrontWeb\Contact');
 })->name('contact');
-
-
-Auth::routes();
 
 Route::group(['prefix' => 'admin'], function(){
 	Route::resource('categories', 'Category\CategoryController')->middleware('auth');

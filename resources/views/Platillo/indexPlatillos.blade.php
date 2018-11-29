@@ -38,6 +38,7 @@
           <td>{{ '$' . $platillo->price }}</td>
           <td> {!! Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger']) !!} </td>
         </tr >
+        {!! Form::close() !!}
       @endforeach
     </tbody>
   </table> 

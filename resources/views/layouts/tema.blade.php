@@ -36,7 +36,6 @@
         <button class="app-search__button"><i class="fa fa-search"></i></button>
       </li>
       @if(Auth::check())
-        @include('layouts.notificaciones')
         @include('layouts.usuario_menu')
       @else
         <a class="app-nav__item" href="{{ route('login') }}"><i class="fa fa-sign-in"></i></a>
@@ -48,7 +47,7 @@
     <aside class="app-sidebar">
     
       @if(Auth::check())
-        <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+        <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('img/' .Auth::user()->photo)}}" alt="User Image" width="40" height="40">
           <div>
             <p class="app-sidebar__user-name">{{ Auth::user()->name }}</p>
             <p class="app-sidebar__user-designation">{{ Auth::user()->email }}</p>

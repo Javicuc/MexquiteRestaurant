@@ -10,7 +10,6 @@ class Table extends Model
     use softDeletes;
 
     const MESA_DISPONIBLE = 'mesa disponible';
-    const MESA_OCUPADA = 'mesa ocupada'; // Solo dura 5 minutos en este estado
     const MESA_RESERVADA = 'mesa reservada';
 
     protected $fillable = [
@@ -19,6 +18,14 @@ class Table extends Model
         'status',
         'size',
     ];
+
+    public function setNumberAttribute($valor){
+        $this->attributes['number'] = mb_strtolower($valor);
+    }
+
+    public function getNumberAttribute($valor){
+        return ucwords($valor);
+    }
 
     public function reservations()
     {
