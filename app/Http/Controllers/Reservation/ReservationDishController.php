@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Reservation;
 
-use Illuminate\Http\Request;
+use App\Dish;
 use App\Http\Controllers\Controller;
+use App\Reservation;
+use Illuminate\Http\Request;
 
 class ReservationDishController extends Controller
 {
@@ -33,9 +35,10 @@ class ReservationDishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Reservation $reservation)
     {
-        //
+        $reservacion = Reservation::findorfail($reservation->id);
+        return redirect()->route('reservations.show', $reservacion);
     }
 
     /**

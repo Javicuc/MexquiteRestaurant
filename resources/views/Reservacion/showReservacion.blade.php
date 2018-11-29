@@ -42,7 +42,7 @@
 
   <div class="clearfix"></div>
   
-  <div class="col-md-12">
+  <div class="col-md-6">
     <div class="tile">
       <h3 class="tile-title">Platillos de la Reservación</h3>
       <div class="table table-bordered table-responsive">
@@ -63,7 +63,7 @@
             <tr>
               <td> <a class="btn btn-sm btn-info" href="{{ route('dishes.show', $platillo->id) }}">{{ $platillo->id }}</a> </td>
               <td> {{ $platillo->name }} </td>>
-              <td> {{ $platillo->price }} </td>
+              <td> {{ '$' . $platillo->price }} </td>
               <td> {{ $platillo->description }} </td>
               <td> {{ $platillo->category->name }}</td>
               <td> {!! Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger']) !!} </td>
@@ -73,6 +73,29 @@
           </tbody>
         </table>
         {{ $platillos->links() }}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="tile">
+      <div class="tile-title-w-btn">
+        <h3 class="title">Agregar Platillos</h3>
+      </div>
+      <div class="tile-body">
+        <p>Agregar platillos a la Reservación seleccionada</p>
+        <h4>Platillos</h4>
+        {!! Form::open(['route' => ['reservations.dishes.store', $reservacion->id]]) !!}
+        <div class="form-group">
+          <select class="form-control" name="dishes">
+            @foreach($platillosList as $platillo)
+            <option value="{{ $platillo->id }}">{{ $platillo->name }}</option>
+            @endforeach
+          </select>
+          <br>
+          {!! Form::submit('Agregar Platillo', ['class' => 'btn btn-primary btn-succesful']) !!}
+          {!! Form::close() !!}
+        </div>
       </div>
     </div>
   </div>

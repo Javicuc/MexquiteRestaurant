@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Reservation;
+use App\Dish;
+use App\Http\Controllers\Controller;
 use App\Reservation;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ReservationController extends Controller
 {
@@ -48,7 +49,8 @@ class ReservationController extends Controller
     {
         $reservacion = Reservation::findorfail($reservation->id);
         $platillos = $reservacion->dishes()->paginate(4);
-        return view('Reservacion.showReservacion', compact('reservacion','platillos'));
+        $platillosList = Dish::all();
+        return view('Reservacion.showReservacion', compact('reservacion','platillos','platillosList'));
     }
 
     /**

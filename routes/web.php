@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/MexquiteRestaurant', function () {
+Route::get('/admin', function () {
     return view('bienvenida');
 })->name('panel');
 

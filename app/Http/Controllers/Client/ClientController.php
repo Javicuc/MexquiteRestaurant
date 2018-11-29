@@ -39,7 +39,7 @@ class ClientController extends Controller
     {
         $rules = array(
           'name' => 'required',
-          'email' => 'required|email',
+          'email' => 'required|email|unique:clients',
         );
         
         //dd($request);

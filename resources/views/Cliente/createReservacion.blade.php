@@ -20,8 +20,11 @@
       
       <h3 class="tile-title">Rellene los Campos para Reservación</h3>
       <div class="tile-body">
+      @if(isset($reservacion))
+        {!! Form::open(['route' => ['clients.reservations.update',  $cliente, $reservacion],'method' => 'PATCH' ]) !!}
+      @else
         {!! Form::open(['route' => ['clients.reservations.store',  $cliente]]) !!}
-        {{-- csrf_field() --}}
+      @endif
         
         <div class="form-group">
           <label for="date" class="control-label">Fecha</label>
