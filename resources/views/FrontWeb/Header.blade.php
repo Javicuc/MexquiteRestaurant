@@ -15,15 +15,23 @@
 						<nav class="menu">
 							<ul class="main_menu">
 								<li>
+<<<<<<< HEAD
+									<a href="">Casa</a>
+								</li>
+
+								<li>
+									<a href="">Menu</a>
+=======
 									<a href="{{ route('mexquiterestaurant') }}">Casa</a>
 								</li>
 
 								<li>
 									<a href="{{ route('menu') }}">Menu</a>
+>>>>>>> 5edba9134368e0c5ca8cee0ad473a03950e88bb9
 								</li>
 
 								<li>
-									<a href="reservation.html">Reservacion</a>
+									<a href="{{ route(reservation.index) }}">Reservacion</a>
 								</li>
 
 								<li>
