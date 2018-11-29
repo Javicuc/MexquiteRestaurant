@@ -31,7 +31,6 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::resource('dishes', 'Dish\DishController');
 	Route::resource('galleries', 'Gallery\GalleryController');
 	Route::resource('images', 'Image\ImageController');
-	Route::resource('payments', 'Payment\PaymentController');
 	Route::resource('reservations', 'Reservation\ReservationController');
 	Route::resource('tables', 'Table\TableController');
 	Route::resource('users', 'User\UserController');

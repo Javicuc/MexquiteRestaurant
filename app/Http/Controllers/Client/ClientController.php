@@ -61,7 +61,7 @@ class ClientController extends Controller
     public function show(Client $client)
     {
         $cliente = Client::findorfail($client->id);
-        $reservaciones = $cliente->reservations()->paginate(10);
+        $reservaciones = $cliente->reservations()->orderBy('id', 'desc')->paginate(10);
         return view('Cliente.showCliente', compact('cliente','reservaciones'));
     }
 

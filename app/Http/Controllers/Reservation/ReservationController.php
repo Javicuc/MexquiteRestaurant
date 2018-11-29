@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Reservation;
 use App\Reservation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReservationController extends Controller
 {
@@ -46,7 +46,9 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        $reservacion = Reservation::findorfail($reservation->id);
+        $platillos = $reservacion->dishes()->paginate(4);
+        return view('Reservacion.showReservacion', compact('reservacion','platillos'));
     }
 
     /**
