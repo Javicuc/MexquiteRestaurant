@@ -13,7 +13,8 @@
 
 Route::get('/admin', function () {
     return view('bienvenida');
-})->name('panel');
+})->name('panel')->middleware('auth');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/', 'FrontWeb\HomeController@index')->name('mexquiterestaurant');
 Route::get('/menu', 'FrontWeb\MenuController@index')->name('menu');
@@ -33,20 +34,20 @@ Route::get('/contact', function(){
 Auth::routes();
 
 Route::group(['prefix' => 'admin'], function(){
-	Route::resource('categories', 'Category\CategoryController');
-	Route::resource('categories.dishes', 'Category\CategoryDishController');
-	Route::resource('categories.galleries', 'Category\CategoryGalleryController');
+	Route::resource('categories', 'Category\CategoryController')->middleware('auth');
+	Route::resource('categories.dishes', 'Category\CategoryDishController')->middleware('auth');
+	Route::resource('categories.galleries', 'Category\CategoryGalleryController')->middleware('auth');
 	
-	Route::resource('clients', 'Client\ClientController');
-	Route::resource('clients.reservations', 'Client\ClientReservationController');
+	Route::resource('clients', 'Client\ClientController')->middleware('auth');
+	Route::resource('clients.reservations', 'Client\ClientReservationController')->middleware('auth');
 
-	Route::resource('dishes', 'Dish\DishController');
-	Route::resource('galleries', 'Gallery\GalleryController');
-	Route::resource('images', 'Image\ImageController');
+	Route::resource('dishes', 'Dish\DishController')->middleware('auth');
+	Route::resource('galleries', 'Gallery\GalleryController')->middleware('auth');
+	Route::resource('images', 'Image\ImageController')->middleware('auth');
 	
-	Route::resource('reservations', 'Reservation\ReservationController');
-	Route::resource('reservations.dishes', 'Reservation\ReservationDishController');
+	Route::resource('reservations', 'Reservation\ReservationController')->middleware('auth');
+	Route::resource('reservations.dishes', 'Reservation\ReservationDishController')->middleware('auth');
 
-	Route::resource('tables', 'Table\TableController');
-	Route::resource('users', 'User\UserController');
+	Route::resource('tables', 'Table\TableController')->middleware('auth');
+	Route::resource('users', 'User\UserController')->middleware('auth');
 });

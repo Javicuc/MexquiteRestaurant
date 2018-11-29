@@ -50,7 +50,7 @@ class ReservationController extends Controller
     {
         $reservacion = Reservation::findorfail($reservation->id);
         $platillos = $reservacion->dishes()->paginate(4);
-        $platillosList = Dish::all();
+        $platillosList = Dish::where('status', Dish::PLATILLO_DISPONIBLE);
         return view('Reservacion.showReservacion', compact('reservacion','platillos','platillosList'));
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::paginate(15);
+        return view('Usuario.indexUsuarios',compact('usuarios'));
     }
 
     /**
@@ -24,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // if(Auth::user->type == User::USUARIO_ADMINISTRADOR)
+        return view('Usuario.formUsuario');
     }
 
     /**
@@ -44,9 +47,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $usuario = User::findorfail($user->id);
+        return view('Usuario.showUsuario', compact('usuario'));
     }
 
     /**
@@ -55,9 +59,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        // Validar si es administrador
+        $usuario = User::findorfail($user->id);
+        return view('Usuario.formUsuario', compact('usuario'));
     }
 
     /**
@@ -78,8 +84,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        //validar si es administrador
+        $usuario = User::findorfail($user->id);
+        return redirect()->route('users.index');
     }
 }

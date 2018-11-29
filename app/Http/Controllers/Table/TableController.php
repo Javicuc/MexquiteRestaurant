@@ -14,7 +14,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        //
+        $mesas = Table::paginate(15);
+        return view('Mesa.indexMesas', compact('mesas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TableController extends Controller
      */
     public function create()
     {
-        //
+        return view('Mesa.formMesa');
     }
 
     /**
@@ -35,7 +36,19 @@ class TableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reglas = [
+            'number' => 'required|unique:tables',
+            'price' => 'required|decimal',
+            'size' => 'required|min:1',
+        ];
+
+        $this->validate($request, $reglas);
+
+        $data = $request->all();
+        
+        $mesa = Table::create($data);
+
+        return redirect()->route('tables.show', $mesa);
     }
 
     /**
@@ -46,7 +59,8 @@ class TableController extends Controller
      */
     public function show(Table $table)
     {
-        //
+        $mesa = Table::findorfail($table->id);
+        return view('Mesa.showMesa', compact('mesa'));
     }
 
     /**
@@ -57,7 +71,8 @@ class TableController extends Controller
      */
     public function edit(Table $table)
     {
-        //
+        $mesa = Table::findorfail($table->id);
+        return view('Mesa.formMesa', compact('mesa'));
     }
 
     /**
@@ -69,7 +84,9 @@ class TableController extends Controller
      */
     public function update(Request $request, Table $table)
     {
-        //
+        $mesa = Table::findorfail($table->id);
+        $mesa->status = Table::MESA_DISPONIBLE;
+        return redirect()->route('tables.index');
     }
 
     /**
@@ -80,6 +97,8 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
-        //
+        $mesa = Table::findorfail($table->id);
+        $mesa->delete();
+        return redirect()->route('tables.index');
     }
 }

@@ -15,7 +15,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $platillos = Dish::paginate(15);
+        return view('Platillo.indexPlatillos', compact('platillos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        return view('Platillo.formPlatillo');
     }
 
     /**
@@ -59,7 +60,8 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        $platillo = Dish::findorfail($dish->id);
+        return view('Platillo.formPlatillo', compact('platillo'));
     }
 
     /**
@@ -82,6 +84,8 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        $platillo = Dish::findorfail($dish->id);
+        $platillo->status = Dish::PLATILLO_NO_DISPONIBLE;
+        return redirect()->route('dishes.index');
     }
 }
