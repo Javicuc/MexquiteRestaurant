@@ -15,35 +15,27 @@
 						<nav class="menu">
 							<ul class="main_menu">
 								<li>
-<<<<<<< HEAD
-									<a href="">Casa</a>
-								</li>
-
-								<li>
-									<a href="">Menu</a>
-=======
 									<a href="{{ route('mexquiterestaurant') }}">Casa</a>
 								</li>
 
 								<li>
 									<a href="{{ route('menu') }}">Menu</a>
->>>>>>> 5edba9134368e0c5ca8cee0ad473a03950e88bb9
 								</li>
 
 								<li>
-									<a href="{{ route(reservation.index) }}">Reservacion</a>
+									<a href="{{ route('reservation') }}">Reservacion</a>
 								</li>
 
 								<li>
-									<a href="gallery.html">Galeria</a>
+									<a href="{{ route('gallery') }}">Galeria</a>
 								</li>
 
 								<li>
-									<a href="about.html">Sobre nosotros</a>
+									<a href="{{ route('aboutUs') }}">Sobre nosotros</a>
 								</li>
 
 								<li>
-									<a href="contact.html">Contacto</a>
+									<a href="{{ route('contact') }}">Contacto</a>
 								</li>
 							</ul>
 						</nav>

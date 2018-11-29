@@ -1,6 +1,6 @@
 @extends('FrontWeb.TemaFront')
 @section('contenido')
-
+@include('FrontWeb.Menu')
 	<section class="section-mainmenu p-t-110 p-b-70 bg1-pattern">
 		<div class="container">
 			<div class="row">

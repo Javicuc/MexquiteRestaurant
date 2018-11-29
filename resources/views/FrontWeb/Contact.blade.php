@@ -5,6 +5,6 @@
 		<h2 class="tit6 t-center">
 			Contacto
 		</h2>
-	</section>
-	
+</section>
+@include('FrontWeb.SendMessageContact')	
 @endsection

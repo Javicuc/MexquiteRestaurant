@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</section>
-
+    @include('FrontWeb.Presentation')
 	@include('FrontWeb.FormReservationHome')
 	
 @endsection
