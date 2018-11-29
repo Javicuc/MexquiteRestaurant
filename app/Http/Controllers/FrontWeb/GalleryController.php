@@ -14,7 +14,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return view('FrontWeb.home');
+        return view('FrontWeb.MainGallery');
     }
 
     /**

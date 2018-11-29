@@ -17,6 +17,18 @@ Route::get('/MexquiteRestaurant', function () {
 
 Route::get('/', 'FrontWeb\HomeController@index')->name('mexquiterestaurant');
 Route::get('/menu', 'FrontWeb\MenuController@index')->name('menu');
+Route::get('/reservation', 'FrontWeb\ReservationController@index')->name('reservation');
+Route::get('/gallery', 'FrontWeb\GalleryController@index')->name('gallery');
+
+Route::get('/aboutUs', function(){
+  return view('FrontWeb\AboutUs');
+})->name('aboutUs');
+
+Route::get('/contact', function(){
+  
+  return view('FrontWeb\Contact');
+})->name('contact');
+
 
 Auth::routes();
 
