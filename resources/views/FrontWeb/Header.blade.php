@@ -15,15 +15,15 @@
 						<nav class="menu">
 							<ul class="main_menu">
 								<li>
-									<a href="index.html">Casa</a>
+									<a href="">Casa</a>
 								</li>
 
 								<li>
-									<a href="menu.html">Menu</a>
+									<a href="">Menu</a>
 								</li>
 
 								<li>
-									<a href="reservation.html">Reservacion</a>
+									<a href="{{ route(reservation.index) }}">Reservacion</a>
 								</li>
 
 								<li>
